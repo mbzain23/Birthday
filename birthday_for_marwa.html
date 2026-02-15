@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Marwa ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a0a0f 0%, #2d1a24 30%, #1a0a0f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 10s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(80vh) scale(1) rotate(10deg);
+            }
+            90% {
+                opacity: 0.6;
+                transform: translateY(10vh) scale(1) rotate(-10deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-10vh) scale(0) rotate(0deg);
+            }
+        }
+
+        /* Rose Petals */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0;
+            animation: fallPetal 12s linear infinite;
+        }
+
+        @keyframes fallPetal {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px) rotate(0deg);
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        /* Envelope Opener */
+        .envelope-container {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            width: 280px;
+            height: 200px;
+            background: linear-gradient(145deg, #d4a5a5, #c48888);
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            margin: 0 auto 30px;
+            overflow: hidden;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(135deg, #e8b4b4, #d4a5a5);
+            transform-origin: top right;
+            transition: transform 0.8s ease;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+        }
+
+        .envelope-flap.left {
+            left: 0;
+            transform-origin: top left;
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            background: linear-gradient(225deg, #e8b4b4, #d4a5a5);
+        }
+
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            z-index: 5;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, calc(-50% - 10px)); }
+        }
+
+        .tap-hint {
+            color: #f0d0d0;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Birthday Content */
+        .birthday-content {
+            display: none;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .birthday-content.show {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Circle */
+        .profile-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            position: relative;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ff9a9e 100%);
+            padding: 5px;
+            box-shadow: 0 0 40px rgba(255, 154, 158, 0.6);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 154, 158, 0.6); }
+            50% { box-shadow: 0 0 60px rgba(255, 154, 158, 0.9); }
+        }
+
+.profile-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: url('1.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Title */
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.8);
+        }
+
+        .sub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #ffb6c1;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Message Card */
+        .message-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            border-radius: 25px;
+            padding: 40px 35px;
+            margin: 20px 0;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        .message-card p {
+            color: #e8e8e8;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            font-weight: 300;
+        }
+
+        .message-card p:first-child {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: #ffb6c1;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Love Declaration */
+        .love-declaration {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(145deg, rgba(255, 107, 157, 0.1), rgba(255, 182, 193, 0.05));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .love-declaration p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #ff6b9d;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* Name Highlight */
+        .name-highlight {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff6b9d;
+            margin: 25px 0;
+            text-align: center;
+            animation: namePulse 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.6);
+        }
+
+        @keyframes namePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Footer */
+        .signature {
+            margin-top: 30px;
+            color: #ffb6c1;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+        }
+
+        .signature span {
+            font-size: 1.8rem;
+        }
+
+        .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        /* Decorative Elements */
+        .decor-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+            margin: 20px auto;
+        }
+
+        .roses {
+            font-size: 40px;
+            margin: 15px 0;
+            animation: roseSway 3s ease-in-out infinite;
+        }
+
+        @keyframes roseSway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Initial hidden state */
+        .birthday-content {
+            display: none;
+        }
+
+        .birthday-content.active {
+            display: block;
+        }
+
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(145deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Hidden Content */
+        .hidden-content {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 15px;
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .hidden-content.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-label, .wishes-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #ffb6c1;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .wishes-final {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: #ffd700;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .hidden-content p {
+            color: #e8e8e8;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.8rem; }
+            .sub-title { font-size: 1.4rem; }
+            .message-card { padding: 25px 20px; }
+            .message-card p { font-size: 0.95rem; }
+            .name-highlight { font-size: 2.5rem; }
+            .profile-circle { width: 140px; height: 140px; }
+            .profile-inner { font-size: 55px; }
+            .love-declaration p { font-size: 1.2rem; }
+            .envelope { width: 220px; height: 160px; }
+            .button-container { flex-direction: column; align-items: center; }
+            .btn { width: 200px; }
+        }
+
+        /* Cake Styles */
+        .cake-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #ffb6c1;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .cake-wrapper {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cake-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .cake-wrapper:active {
+            transform: scale(0.95);
+        }
+
+        .cake {
+            position: relative;
+            width: 260px;
+            height: 220px;
+            margin: 0 auto;
+        }
+
+        .cake-top {
+            position: absolute;
+            top: 0;
+            left: 15px;
+            right: 15px;
+            height: 50px;
+            background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 50%, #ff6b9d 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 0;
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 3px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: radial-gradient(ellipse at bottom, #ffd700 0%, #ff6b6b 50%, transparent 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .cake-layer {
+            position: absolute;
+            left: 25px;
+            right: 25px;
+            background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 50%, #ff6b9d 100%);
+            border-radius: 10px;
+        }
+
+        .layer-3 {
+            top: 50px;
+            height: 40px;
+            background: linear-gradient(180deg, #ffb6c1 0%, #ffc0cb 50%, #ff9a9e 100%);
+        }
+
+        .layer-2 {
+            top: 90px;
+            height: 40px;
+            background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 50%, #ff6b9d 100%);
+        }
+
+        .layer-1 {
+            top: 130px;
+            height: 45px;
+            background: linear-gradient(180deg, #ff6b9d 0%, #ff8fa3 50%, #ff6b9d 100%);
+            border-radius: 10px 10px 50% 50%;
+        }
+
+        .cake-plate {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 18px;
+            background: linear-gradient(180deg, #e0e0e0 0%, #c0c0c0 100%);
+            border-radius: 5px;
+        }
+
+        .cut-hint {
+            text-align: center;
+            color: #ffb6c1;
+            font-size: 1rem;
+            margin-top: 15px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .cake-message {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2), rgba(255, 182, 193, 0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .cake-message.show {
+            display: block;
+        }
+
+        .cut-celebration {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: #ffd700;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .cake.cut .layer-3,
+        .cake.cut .layer-2 {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Knife Styles */
+        .cake-scene {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .knife-container {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .knife-container:hover {
+            transform: scale(1.1);
+        }
+
+        .knife-container:active {
+            transform: scale(0.95);
+        }
+
+        .knife {
+            position: relative;
+            width: 80px;
+            height: 20px;
+        }
+
+        .knife-handle {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 16px;
+            background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+            border-radius: 3px 0 0 3px;
+        }
+
+        .knife-handle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+        }
+
+        .knife-blade {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 18px;
+            background: linear-gradient(180deg, #C0C0C0 0%, #A0A0A0 50%, #808080 100%);
+            border-radius: 0 50% 50% 0;
+        }
+
+        .knife-blade::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 3px;
+            width: 30px;
+            height: 3px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 2px;
+        }
+
+        /* Cutting animation */
+        .knife-container.cutting {
+            animation: cutAction 0.5s ease-in-out;
+        }
+
+        @keyframes cutAction {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Cake Slices */
+        .cake-slices {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            height: 120px;
+        }
+
+        .cake-slices.show {
+            display: block;
+        }
+
+        .slice {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background: linear-gradient(180deg, #ffb6c1 0%, #ff9a9e 50%, #ff6b9d 100%);
+            border-radius: 0 0 50% 50%;
+            opacity: 0;
+            animation: sliceAppear 0.5s ease-out forwards;
+        }
+
+        .slice-1 { 
+            left: 100px; 
+            top: 30px; 
+            animation-delay: 0.1s; 
+        }
+
+        @keyframes sliceAppear {
+            0% { opacity: 0; transform: translateY(-20px) scale(0.5); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .cake.cut {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <div class="container">
+        <!-- Envelope Opener -->
+        <div class="envelope-container" id="envelopeContainer" onclick="openEnvelope()">
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap left"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-content">💌</div>
+            </div>
+            <p class="tap-hint">Tap to Open 💕</p>
+        </div>
+
+        <!-- Birthday Message -->
+        <div class="birthday-content" id="birthdayContent">
+<div class="profile-circle">
+                <div class="profile-inner"></div>
+            </div>
+
+            <h1 class="main-title">Happy Birthday</h1>
+            <p class="sub-title">Marwa</p>
+
+            <div class="roses">🌹 🌹 🌹</div>
+
+            <div class="message-card">
+                <p>Marwa,</p>
+                
+                <p>I'm so glad we crossed paths,<br>
+                Thank you for always being there for me when I'm down,<br>
+                Thank you for making me laugh even late at night,<br>
+                You really make life better, you're an amazing friend,<br>
+                I met you and I still can't find the right words to describe you,<br>
+                You're the best friend who helped me when I was at my lowest,<br>
+                You're the friend who truly cares about me,<br>
+                You're one of the best things that ever happened to me,<br>
+                You mean a lot to me,<br>
+                Thank you for always having my back,<br>
+                I'm so happy to have you in my life.</p>
+
+                <div class="decor-line"></div>
+
+                <div class="love-declaration">
+                    <p>YOU MEAN SO MUCH TO ME,</p>
+                    <p>I HOPE ALLAH SWT BLESS OUR FRIENDSHIP FOREVER.</p>
+                </div>
+
+                <div class="decor-line"></div>
+
+                <div class="name-highlight">Marwa ❤️</div>
+
+                <div class="button-container">
+                    <button class="btn" onclick="showMyMessage()">My Message 💌</button>
+                    <button class="btn" onclick="showBirthdayWishes()">Birthday Wishes 🎂</button>
+                    <button class="btn" onclick="showCake()">Cut the Cake 🎂</button>
+                </div>
+
+                <div class="hidden-content" id="myMessageContent">
+                    <p class="message-label">💕 My Heartfelt Message 💕</p>
+                    <p>From the moment we met in that PUBG match, I knew we would become great friends. You've been there for me through thick and thin, and I truly appreciate everything you do. You make me laugh, you lift my spirits when I'm down, and you always know how to brighten my day. Distance may keep us apart, but our friendship knows no bounds. I'm grateful to have you as a friend and I hope our bond grows stronger with each passing day. Stay amazing, my friend! 🌟</p>
+                </div>
+
+                <div class="hidden-content" id="birthdayWishesContent">
+                    <p class="wishes-label">🎉 Marwa's Birthday Wishes 🎉</p>
+                    <p>May Allah bless you with endless happiness, good health, and success in everything you do. 🌟</p>
+                    <p>May your days be filled with joy, your heart with peace, and your life with love. 💖</p>
+                    <p>You deserve all the beautiful things this world has to offer. 🌸</p>
+                    <p>I pray that we stay friends forever and celebrate many more birthdays together, Inshallah! 🤲🌟</p>
+                    <p>May this new year of your life bring you countless blessings, beautiful moments, and all the happiness you deserve. You're an amazing friend, and I pray Allah keeps you safe, happy, and blessed always. Ameen! 💕</p>
+                    <p class="wishes-final">Happy Birthday, Marwa! 🎂✨</p>
+                </div>
+
+                <div class="hidden-content" id="cakeContent">
+                    <p class="cake-label">🎂 Click the Knife to Cut the Cake! 🎂</p>
+                    <div class="cake-scene">
+                        <div class="cake" id="cake">
+                            <div class="cake-top">
+                                <div class="candle" style="left: 20%;"><div class="flame"></div></div>
+                                <div class="candle" style="left: 40%;"><div class="flame"></div></div>
+                                <div class="candle" style="left: 60%;"><div class="flame"></div></div>
+                                <div class="candle" style="left: 80%;"><div class="flame"></div></div>
+                            </div>
+                            <div class="cake-layer layer-3"></div>
+                            <div class="cake-layer layer-2"></div>
+                            <div class="cake-layer layer-1"></div>
+                            <div class="cake-plate"></div>
+                        </div>
+                        <div class="knife-container" id="knifeContainer" onclick="cutCake()">
+                            <div class="knife" id="knife">
+                                <div class="knife-handle"></div>
+                                <div class="knife-blade"></div>
+                            </div>
+                        </div>
+                        <div class="cake-slices" id="cakeSlices">
+                            <div class="slice slice-1"></div>
+                        </div>
+                    </div>
+                    <p class="cut-hint">👆 Tap the Knife to Cut!</p>
+                    <div class="cake-message" id="cakeMessage">
+                        <p class="cut-celebration">🎉 YAY! THE CAKE IS CUT! 🎉</p>
+                        <p>May your life be as sweet as this cake! 🍰</p>
+                        <p>Happy Birthday, Marwa! 🎂</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roses">🌹 🌹 🌹</div>
+
+            <p class="signature">Your Friend,<br><span>Thanks for being an amazing friend who means the world to me 🌟</span></p>
+            <p class="date">27th of Muharram, 1446 ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            const heartSymbols = ['💕', '💖', '💗', '❤️', '💘', '💝', '💌', '🌹'];
+            
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Create falling rose petals
+        function createPetals() {
+            const container = document.getElementById('petalsContainer');
+            const petals = ['🌹', '🥀', '✨', '💫', '⭐'];
+            
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDelay = Math.random() * 12 + 's';
+                petal.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                petal.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                container.appendChild(petal);
+            }
+        }
+
+        // Open envelope function
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const envelopeContainer = document.getElementById('envelopeContainer');
+            const birthdayContent = document.getElementById('birthdayContent');
+            
+            envelope.classList.add('open');
+            
+            setTimeout(() => {
+                envelopeContainer.style.display = 'none';
+                birthdayContent.classList.add('active');
+                
+                // Trigger celebration hearts
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        createCelebrationHeart();
+                    }, i * 100);
+                }
+            }, 800);
+        }
+
+        // Create celebration hearts when envelope opens
+        function createCelebrationHeart() {
+            const container = document.getElementById('heartsBg');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '50%';
+            heart.style.animation = 'floatHeart 4s ease-out forwards';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            container.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Initialize
+        createHearts();
+        createPetals();
+
+        // Button functions
+        function showMyMessage() {
+            const myMessage = document.getElementById('myMessageContent');
+            const birthdayWishes = document.getElementById('birthdayWishesContent');
+            const cakeContent = document.getElementById('cakeContent');
+            
+            if (myMessage.classList.contains('show')) {
+                myMessage.classList.remove('show');
+            } else {
+                myMessage.classList.add('show');
+                birthdayWishes.classList.remove('show');
+                cakeContent.classList.remove('show');
+            }
+        }
+
+        function showBirthdayWishes() {
+            const myMessage = document.getElementById('myMessageContent');
+            const birthdayWishes = document.getElementById('birthdayWishesContent');
+            const cakeContent = document.getElementById('cakeContent');
+            
+            if (birthdayWishes.classList.contains('show')) {
+                birthdayWishes.classList.remove('show');
+            } else {
+                birthdayWishes.classList.add('show');
+                myMessage.classList.remove('show');
+                cakeContent.classList.remove('show');
+            }
+        }
+
+        function showCake() {
+            const myMessage = document.getElementById('myMessageContent');
+            const birthdayWishes = document.getElementById('birthdayWishesContent');
+            const cakeContent = document.getElementById('cakeContent');
+            
+            if (cakeContent.classList.contains('show')) {
+                cakeContent.classList.remove('show');
+            } else {
+                cakeContent.classList.add('show');
+                myMessage.classList.remove('show');
+                birthdayWishes.classList.remove('show');
+            }
+        }
+
+        function cutCake() {
+            const cake = document.querySelector('.cake');
+            const cakeMessage = document.getElementById('cakeMessage');
+            const cutHint = document.querySelector('.cut-hint');
+            const knifeContainer = document.getElementById('knifeContainer');
+            const cakeSlices = document.getElementById('cakeSlices');
+            
+            // Knife cutting animation
+            knifeContainer.classList.add('cutting');
+            cake.classList.add('cut');
+            cutHint.style.display = 'none';
+            
+            setTimeout(() => {
+                // Show cake slices
+                cakeSlices.classList.add('show');
+                knifeContainer.classList.remove('cutting');
+                
+                cakeMessage.classList.add('show');
+                
+                // Create celebration effects
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        createCelebrationHeart();
+                    }, i * 100);
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>
+
